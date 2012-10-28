@@ -2,22 +2,6 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-public class NoteEditorMenu : MonoBehaviour
-{
-	[MenuItem("Component/Note/Add note")]
-	static void AddNoteToGameObject ()
-	{
-		Selection.activeGameObject.AddComponent (typeof(Note));
-	}
-
-	[MenuItem("Component/Note/Add note", true)]
-	static bool AddNoteToGameObjectValidation ()
-	{
-		return Selection.activeTransform != null;
-	}
-
-}
-
 [CustomEditor(typeof(Note))]
 public class NoteEditor : Editor {
 	private SerializedProperty note;
