@@ -3,7 +3,7 @@ Unity Notes
 
 Unity Notes adds a Note component that can be addded to any GameObject in order to hold a note about it.
 
-![Unity Note](https://github.com/derosa/Unity-Notes/blob/master/images/UnityNotes.png)
+![Unity Note](https://raw.github.com/derosa/Unity-Notes/master/images/UnityNotes.png)
 
 Installation
 ============
