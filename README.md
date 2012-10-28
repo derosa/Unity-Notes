@@ -11,9 +11,9 @@ Copy/drop the UnityNotes folderinto your assets folder
 How to use Unity Notes
 =====================
 
-# Select the object you want to add a note to.
-# Go to Component/Note/Add Note
-# Write your note!
+1. Select the object you want to add a note to.
+2. Go to Component/Note/Add Note
+3. Write your note!
 
 Developed By
 ============
