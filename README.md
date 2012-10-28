@@ -6,7 +6,7 @@ Unity Notes adds a Note component that can be addded to any GameObject in order 
 Installation
 ============
 
-Copy/drop the UnityNotes folderinto your assets folder
+Copy UnityNotes into your assets folder
 
 How to use Unity Notes
 =====================
