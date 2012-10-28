@@ -4,7 +4,8 @@ using UnityEditor;
 
 [CustomEditor(typeof(Note))]
 public class NoteEditor : Editor {
-	private SerializedProperty note;
+	private SerializedProperty noteContent;
+	private SerializedProperty noteTitle;
 	private bool editable = false;
 	private GUILayoutOption[] options = {
 		GUILayout.ExpandWidth (true), 
@@ -13,7 +14,8 @@ public class NoteEditor : Editor {
 	
 	private void OnEnable ()
 	{
-		note = serializedObject.FindProperty ("note");
+		noteContent = serializedObject.FindProperty ("note");
+		noteTitle = serializedObject.FindProperty ("title");
 		editable = false;
 	}
 	
@@ -21,28 +23,36 @@ public class NoteEditor : Editor {
 	{
 		serializedObject.Update ();
 		
-		GUIStyle textAreaStyle = GUI.skin.GetStyle ("textArea");
+		GUIStyle textAreaStyle = new GUIStyle(GUI.skin.GetStyle ("textArea"));
 		textAreaStyle.wordWrap = true;
 		textAreaStyle.stretchWidth = true;	
 		textAreaStyle.fixedHeight = 0;
 		textAreaStyle.stretchHeight = true;
 		
-		GUIStyle labelStyle = GUI.skin.GetStyle ("label");
+		GUIStyle labelStyle = new GUIStyle(GUI.skin.GetStyle ("label"));
 		labelStyle.wordWrap = true;
 		labelStyle.stretchWidth = true;	
+		labelStyle.fontStyle = FontStyle.Normal;
+
+		GUIStyle labelBoldStyle = new GUIStyle (GUI.skin.GetStyle ("label"));
+		labelBoldStyle.fontStyle = FontStyle.Bold;
 
 		if (GUILayout.Button (editable ? "Lock note" : "Edit note")) {
 			editable = !editable;
 		}
-		
-		GUILayout.Label ("Note:");
 						
-		if (editable) {		
-			note.stringValue = EditorGUILayout.TextArea (note.stringValue, 
+		if (editable) {	
+			GUILayout.Label ("Title", labelBoldStyle);
+			noteTitle.stringValue = EditorGUILayout.TextField (noteTitle.stringValue);
+			GUILayout.Label ("Note", labelBoldStyle);
+			noteContent.stringValue = EditorGUILayout.TextArea (noteContent.stringValue, 
 				textAreaStyle,
 				options);
 		} else {
-			EditorGUILayout.LabelField (note.stringValue, 
+			GUILayout.Label ("Title", labelBoldStyle);
+			EditorGUILayout.LabelField (noteTitle.stringValue, labelStyle);
+			GUILayout.Label ("Note", labelBoldStyle);
+			EditorGUILayout.LabelField (noteContent.stringValue, 
 				labelStyle,
 				options);
 		}
